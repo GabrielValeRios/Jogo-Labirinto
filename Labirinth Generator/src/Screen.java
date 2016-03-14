@@ -18,6 +18,11 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 	private int xRight;
 	private int xDown;
 	private int xUp;
+	private int limiteLeft;
+	private int limiteRigth;
+	private int limiteUp;
+	private int limiteDown;
+	
 
 	private int xBoneco;
 	private int yBoneco;
@@ -39,9 +44,16 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 		xBoneco = CELL_SIZE/2;
 		yBoneco = CELL_SIZE/2 ;
 
+
 		
 		this.width = this.labyrinth[0].length;
 		this.height = this.labyrinth.length;
+		
+		limiteLeft = CELL_SIZE/2;
+		limiteRigth = CELL_SIZE*(this.width - 1);
+		limiteUp = CELL_SIZE/2;
+		limiteDown = CELL_SIZE*(this.height - 1);
+		System.out.println(limiteDown);
 		
 		image = new ImageIcon(getClass().getResource("/img/example.png")).getImage();
 		
@@ -79,27 +91,46 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 	    	int key = e.getKeyCode();
 	    	
 	    	if(key == KeyEvent.VK_LEFT) {
+	    		if(xBoneco <= limiteLeft){
+	    			xBoneco = limiteLeft;
+	    		
+	    		}else{
 	    		xBoneco -= xLeft;
 	    		repaint();
+	    		}
 	    	}
 	    		
 	        if(key == KeyEvent.VK_RIGHT) {
+	        	if(xBoneco >= limiteRigth){
+	        		xBoneco = limiteRigth + CELL_SIZE/2;
+	        		
+	        	}else{
 	        	xBoneco += xRight;
 	        	repaint();
+	        	}
 	        }
 	        
 	    	if(key == KeyEvent.VK_UP) {
+	    		if(yBoneco <= limiteUp){
+	    			yBoneco = limiteUp;
+	    			
+	    		}else{
 	    		yBoneco -=  xUp;
 	    		repaint();
+	    		}
 	    	}
 	    		
 	        if(key == KeyEvent.VK_DOWN) {
+	        	if(yBoneco >= limiteDown){
+	        		yBoneco = limiteDown + CELL_SIZE/2;
+	        	}else{
 	        	yBoneco += xDown;
 	        	repaint();
+	        	}
 	        }
 	        
-
-
+	 System.out.println(yBoneco);
+	 
 	 getToolkit().sync();
 	 }
 

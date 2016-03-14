@@ -9,8 +9,8 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 public class LabyrinthGenerator {
-	private static final int WIDTH = 15;
-	private static final int HEIGHT = 10;
+	protected static final int WIDTH = 15;
+	protected static final int HEIGHT = 10;
 	
 
     public static void main(String[] args) {
