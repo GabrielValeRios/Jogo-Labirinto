@@ -16,7 +16,6 @@ public class LabyrinthGenerator {
     public static void main(String[] args) {
     	int i, j;
     	
-
     	Cell[][] cells = new Cell[HEIGHT][WIDTH];
 
 		for(i = 0; i < HEIGHT; i++) {
@@ -95,7 +94,7 @@ public class LabyrinthGenerator {
 		}
 
 		PrintWriter writer = new PrintWriter(new OutputStreamWriter(stream, charset));
-
+        
 		for(i = 0; i < labyrinth.length; i++) {
 			for(j = 0; j < labyrinth[0].length; j++) {
 				if(labyrinth[i][j]) {

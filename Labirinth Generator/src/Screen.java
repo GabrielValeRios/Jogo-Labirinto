@@ -36,6 +36,8 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 
 	public Screen(boolean[][] labyrinth) {
 		this.labyrinth = labyrinth;
+
+		
 		xLeft = CELL_SIZE ;
 		xRight =3/2 * CELL_SIZE;
 		xUp = CELL_SIZE ;
@@ -53,7 +55,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 		limiteRigth = CELL_SIZE*(this.width - 1);
 		limiteUp = CELL_SIZE/2;
 		limiteDown = CELL_SIZE*(this.height - 1);
-		System.out.println(limiteDown);
+		System.out.println(limiteRigth);
 		
 		image = new ImageIcon(getClass().getResource("/img/example.png")).getImage();
 		
@@ -68,21 +70,22 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 			for(int j = 0; j < this.width; j++) {
 				int x = j * CELL_SIZE;
 				
-				g.drawImage(image, xBoneco - CELL_SIZE / 2, yBoneco - CELL_SIZE  / 2, CELL_SIZE , CELL_SIZE , null);
+				
 				
 				if(labyrinth[i][j]) {
 					g.setColor(Color.WHITE);
-
+					
 					
 				}
 				else {
 					g.setColor(Color.BLACK);
-
+				
+				
 				
 				}
 				
 				g.fillRect(x, y, CELL_SIZE, CELL_SIZE);
-				
+				g.drawImage(image, xBoneco - CELL_SIZE / 2, yBoneco - CELL_SIZE  / 2, CELL_SIZE , CELL_SIZE , null);
 			}
 		}
 	}
@@ -101,8 +104,9 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 	    	}
 	    		
 	        if(key == KeyEvent.VK_RIGHT) {
-	        	if(xBoneco >= limiteRigth){
+	        	if(xBoneco == limiteRigth + CELL_SIZE/2){
 	        		xBoneco = limiteRigth + CELL_SIZE/2;
+	        		
 	        		
 	        	}else{
 	        	xBoneco += xRight;
@@ -121,16 +125,16 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 	    	}
 	    		
 	        if(key == KeyEvent.VK_DOWN) {
-	        	if(yBoneco >= limiteDown){
+	        	if(yBoneco == limiteDown + CELL_SIZE/2){
 	        		yBoneco = limiteDown + CELL_SIZE/2;
 	        	}else{
 	        	yBoneco += xDown;
 	        	repaint();
 	        	}
+	        
+
 	        }
 	        
-	 System.out.println(yBoneco);
-	 
 	 getToolkit().sync();
 	 }
 
